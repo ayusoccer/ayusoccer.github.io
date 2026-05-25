@@ -541,6 +541,121 @@
             border: 1px solid var(--border);
         }
 
+        /* Teaching */
+        .teach-card {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 32px;
+            padding: 28px;
+            align-items: stretch;
+        }
+        .video-wrap {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid var(--border);
+        }
+        .video-wrap iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .teach-meta {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .teach-meta .course {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent-3);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 14px;
+        }
+        .teach-meta h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+        .teach-meta .blurb {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+        .teach-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+        .teach-stat {
+            padding: 14px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid var(--border);
+        }
+        .teach-stat .num {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #c4b5fd, #93c5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .teach-stat .lbl {
+            font-size: 0.75rem;
+            color: var(--text-faint);
+            margin-top: 2px;
+        }
+        .teach-meta .watch {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-2);
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-decoration: none;
+            align-self: flex-start;
+            transition: gap 0.2s ease;
+        }
+        .teach-meta .watch:hover { gap: 12px; }
+
+        /* Music */
+        .music-card {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 36px;
+            padding: 28px;
+            align-items: center;
+        }
+        .short-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid var(--border);
+            justify-self: end;
+        }
+        .short-wrap iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         /* Education */
         .edu-grid {
             display: grid;
@@ -708,6 +823,9 @@
             .paper { flex: 0 0 88%; }
             .project { flex: 0 0 88%; }
             .section-head { flex-direction: column; align-items: flex-start; }
+            .teach-card { grid-template-columns: 1fr; gap: 24px; }
+            .music-card { grid-template-columns: 1fr; gap: 24px; justify-items: center; }
+            .short-wrap { max-width: 280px; justify-self: center; }
             .hero .avatar { width: 140px; height: 140px; }
         }
         @media (max-width: 640px) {
@@ -730,9 +848,11 @@
         <div class="links">
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
+            <a href="#teaching">Teaching</a>
             <a href="#projects">Projects</a>
             <a href="#papers">Papers</a>
             <a href="#education">Education</a>
+            <a href="#music">Music</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -741,7 +861,7 @@
         <div class="hero-inner">
             <div class="avatar reveal"><img src="files/profile.png" alt="Ayush Parikh"></div>
             <h1 class="reveal">Hi, I'm Ayush.</h1>
-            <p class="tagline reveal">Software engineer building agentic AI at Meta. Researcher, educator, and ML-focused MSCS from Georgia Tech.</p>
+            <p class="tagline reveal">Software engineer building agentic AI at Meta. Researcher, educator, and ML-focused masters from Georgia Tech.</p>
             <div class="ctas reveal">
                 <a href="#projects" class="btn btn-primary">See my work
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -756,7 +876,7 @@
             <div class="section-head reveal">
                 <div>
                     <div class="label">// 01 — About</div>
-                    <h2>Experienced software engineer<br>and educator with varied<br>research experience.</h2>
+                    <h2>Experienced software engineer, educator, and researcher.</h2>
                 </div>
                 <p class="sub">Based in New York. Building AI Agents at Meta, teaching with CodePath, and publishing on the side.</p>
             </div>
@@ -822,8 +942,49 @@
                         <div class="company">CodePath</div>
                         <div class="when">Sep 2024 — Now</div>
                     </div>
-                    <div class="title">Instructor</div>
-                    <p class="desc">Lead biweekly technical interview prep sessions for 350+ underrepresented students in tech, focused on landing first internships and full-time SWE roles.</p>
+                    <div class="title">Instructor · AI 110 — AI Native Programming</div>
+                    <p class="desc">Lead weekly live sessions for 350+ underrepresented students in tech. Co-shaped the AI 110 curriculum on AI-native programming and run technical-interview prep aimed at landing first internships and full-time SWE roles. <a href="#teaching" style="color: var(--accent-2); text-decoration: none; font-weight: 500;">See a lecture ↓</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="teaching" class="block">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="label">// 03 — Teaching</div>
+                    <h2>Teaching the next wave.</h2>
+                </div>
+                <p class="sub">Instructor at <a href="https://www.codepath.org" target="_blank" rel="noopener" style="color: var(--accent-2); text-decoration: none;">CodePath</a>, designing curriculum and lecturing on the AI 110 course — AI Native Programming — for 350+ underrepresented students in tech.</p>
+            </div>
+            <div class="glass teach-card reveal">
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube-nocookie.com/embed/hBvP3nXW3A8?start=82&rel=0"
+                        title="AI 110 — AI Native Programming · Lecture by Ayush Parikh"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="teach-meta">
+                    <div class="course">AI 110 · AI Native Programming</div>
+                    <h3>Live lecture on AI-native engineering workflows</h3>
+                    <p class="blurb">Recorded session from the CodePath AI 110 course — walking students through how modern engineers actually use agents, codegen, and AI-native tooling to build software end-to-end.</p>
+                    <div class="teach-stats">
+                        <div class="teach-stat">
+                            <div class="num">350+</div>
+                            <div class="lbl">Students reached</div>
+                        </div>
+                        <div class="teach-stat">
+                            <div class="num">Weekly</div>
+                            <div class="lbl">Live sessions</div>
+                        </div>
+                    </div>
+                    <a class="watch" href="https://www.youtube.com/watch?v=hBvP3nXW3A8&list=PLrT2tZ9JRrf7cjQeD_pEdslLyTu56fJnG" target="_blank" rel="noopener">
+                        Watch the full playlist on YouTube
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -833,7 +994,7 @@
         <div class="container">
             <div class="section-head reveal">
                 <div>
-                    <div class="label">// 03 — Projects</div>
+                    <div class="label">// 04 — Projects</div>
                     <h2>Things I've built.</h2>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
@@ -926,7 +1087,7 @@
         <div class="container">
             <div class="section-head reveal">
                 <div>
-                    <div class="label">// 04 — Publications</div>
+                    <div class="label">// 05 — Publications</div>
                     <h2>Research Papers</h2>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
@@ -1006,7 +1167,7 @@
         <div class="container">
             <div class="section-head reveal">
                 <div>
-                    <div class="label">// 05 — Education</div>
+                    <div class="label">// 06 — Education</div>
                     <h2>Where I studied.</h2>
                 </div>
                 <p class="sub">Specialized in machine learning at Georgia Tech; broad CS foundation at Penn.</p>
@@ -1040,7 +1201,7 @@
         <div class="container">
             <div class="section-head reveal">
                 <div>
-                    <div class="label">// 06 — Skills</div>
+                    <div class="label">// 07 — Skills</div>
                     <h2>Tools of the trade.</h2>
                 </div>
                 <p class="sub">Languages and tools I reach for day-to-day, across AI infra, services, and frontend.</p>
@@ -1077,10 +1238,41 @@
         </div>
     </section>
 
+    <section id="music" class="block">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="label">// 08 — Music</div>
+                    <h2>Off-hours.</h2>
+                </div>
+                <p class="sub">When I'm not writing code, I'm at the keys. Piano covers of the songs I love, posted on my channel, AyushMusic.</p>
+            </div>
+            <div class="glass music-card reveal">
+                <div class="teach-meta">
+                    <div class="course">AyushMusic · YouTube</div>
+                    <h3>Piano Covers</h3>
+                    <p class="blurb">I like to play Bollywood, jazz, pop, and classical piano. I also love to teach! See covers and video lessons on my channel.</p>
+                    <a class="watch" href="https://www.youtube.com/channel/UCvKpfgxrxwc4krArfJq104w" target="_blank" rel="noopener">
+                        Visit AyushMusic on YouTube
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <div class="short-wrap">
+                    <iframe
+                        src="https://www.youtube-nocookie.com/embed/dqtleCXIFJY?rel=0"
+                        title="AyushMusic · YouTube Short"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="block">
         <div class="container">
             <div class="glass contact-card reveal">
-                <div class="label" style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent-3); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px;">// 07 — Contact</div>
+                <div class="label" style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent-3); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px;">// 09 — Contact</div>
                 <h2>Let's build something.</h2>
                 <p>Open to research collaborations, teaching opportunities, and interesting engineering problems. The fastest way to reach me is via email.</p>
                 <div class="socials">
