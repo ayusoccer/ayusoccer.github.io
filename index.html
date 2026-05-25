@@ -457,29 +457,174 @@
         .carousel-btn svg { width: 18px; height: 18px; }
 
         /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+        .project {
+            flex: 0 0 420px;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            min-height: 380px;
         }
-        .project h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 10px;
+        .project .tag-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
         }
         .project .tag {
-            display: inline-block;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
             color: var(--accent-2);
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            margin-bottom: 12px;
         }
-        .project p {
+        .project .at {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-faint);
+        }
+        .project h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            letter-spacing: -0.01em;
+        }
+        .project .summary {
             color: var(--text-dim);
             font-size: 0.92rem;
             line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .project .bullets {
+            list-style: none;
+            margin: 0 0 18px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .project .bullets li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+        .project .bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+        }
+        .project .bullets li b {
+            color: var(--text);
+            font-weight: 600;
+        }
+        .project .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        .project .stack span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            padding: 3px 9px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+        }
+
+        /* Education */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+        }
+        .edu .school {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 4px;
+        }
+        .edu .where {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-faint);
+            margin-bottom: 16px;
+        }
+        .edu .degree {
+            color: var(--accent-2);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .edu .meta-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-top: 14px;
+            margin-top: 14px;
+            border-top: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+        }
+        .edu .meta-row .k { color: var(--text-faint); margin-right: 6px; }
+        .edu .meta-row .v { color: var(--text); font-weight: 500; }
+        .edu .extra {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.55;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+        }
+        .skill-group .group-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-3);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .skill-group .group-title .bar {
+            width: 22px;
+            height: 1px;
+            background: var(--accent-3);
+            opacity: 0.5;
+        }
+        .skill-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skill-pills span {
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text);
+            transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+        }
+        .skill-pills span:hover {
+            background: var(--glass-strong);
+            border-color: var(--border-strong);
+            transform: translateY(-2px);
         }
 
         /* Contact */
@@ -549,17 +694,30 @@
         }
 
         /* Responsive */
+        @media (max-width: 900px) {
+            nav.top .links { gap: 16px; }
+            nav.top .links a { font-size: 0.83rem; }
+        }
         @media (max-width: 760px) {
             nav.top { padding: 14px 20px; }
-            nav.top .links { gap: 18px; }
-            nav.top .links a { font-size: 0.82rem; }
+            nav.top .links { gap: 14px; }
+            nav.top .links a { font-size: 0.8rem; }
             section.block { padding: 70px 20px; }
             .hero { padding: 110px 20px 60px; }
             .about-grid { grid-template-columns: 1fr; }
             .paper { flex: 0 0 88%; }
+            .project { flex: 0 0 88%; }
+            .section-head { flex-direction: column; align-items: flex-start; }
+            .hero .avatar { width: 140px; height: 140px; }
+        }
+        @media (max-width: 640px) {
+            nav.top .links a:nth-child(4),
+            nav.top .links a:nth-child(5) { display: none; }
         }
         @media (max-width: 480px) {
-            nav.top .links a:nth-child(2) { display: none; }
+            nav.top .links a:nth-child(2),
+            nav.top .links a:nth-child(3) { display: none; }
+            .hero h1 { font-size: 2.4rem; }
         }
     </style>
 </head>
@@ -572,8 +730,9 @@
         <div class="links">
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
-            <a href="#papers">Papers</a>
             <a href="#projects">Projects</a>
+            <a href="#papers">Papers</a>
+            <a href="#education">Education</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -582,9 +741,9 @@
         <div class="hero-inner">
             <div class="avatar reveal"><img src="files/profile.png" alt="Ayush Parikh"></div>
             <h1 class="reveal">Hi, I'm Ayush.</h1>
-            <p class="tagline reveal">Software engineer, researcher, and educator building at the intersection of machine learning, systems, and the people who use them.</p>
+            <p class="tagline reveal">Software engineer building agentic AI at Meta. Researcher, educator, and ML-focused MSCS from Georgia Tech.</p>
             <div class="ctas reveal">
-                <a href="#papers" class="btn btn-primary">Read my papers
+                <a href="#projects" class="btn btn-primary">See my work
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                 </a>
                 <a href="#contact" class="btn btn-ghost">Get in touch</a>
@@ -599,25 +758,25 @@
                     <div class="label">// 01 — About</div>
                     <h2>Experienced software engineer<br>and educator with varied<br>research experience.</h2>
                 </div>
-                <p class="sub">Based in New York. Building VR/AI at Meta, teaching with CodePath, and publishing on the side.</p>
+                <p class="sub">Based in New York. Building AI Agents at Meta, teaching with CodePath, and publishing on the side.</p>
             </div>
             <div class="about-grid">
                 <div class="glass lead reveal">
-                    I'm a software engineer on the <span class="accent">VR AI team at Meta</span>, previously at <span class="accent">Microsoft</span> on Meeting Services. On the side, I teach with <span class="accent">CodePath</span>, helping underrepresented students break into tech. My research spans <span class="accent">NLP, materials science, and CS education</span> — I'm drawn to problems where good engineering and good science overlap.
+                    I'm a software engineer on the <span class="accent">VR AI team at Meta</span>, where I lead eval infrastructure for our agentic voice assistant and build the surrounding data and inference systems. Previously, four years at <span class="accent">Microsoft</span> on Meeting Services — shipping Athena, Smart Incident Management, and the Mesh × Teams integration. I teach with <span class="accent">CodePath</span> on the side to help underrepresented students break into tech, and my research spans <span class="accent">applied ML, materials science, and CS education</span>.
                 </div>
                 <div class="quick-facts">
                     <div class="glass fact reveal">
                         <div class="ico">🏢</div>
                         <div>
                             <div class="meta">Currently</div>
-                            <div class="val">SWE @ Meta · VR AI</div>
+                            <div class="val">SWE @ Meta · VR AI · NY</div>
                         </div>
                     </div>
                     <div class="glass fact reveal">
                         <div class="ico">🎓</div>
                         <div>
                             <div class="meta">Education</div>
-                            <div class="val">Georgia Tech</div>
+                            <div class="val">Georgia Tech · UPenn</div>
                         </div>
                     </div>
                     <div class="glass fact reveal">
@@ -645,26 +804,119 @@
                 <div class="glass role reveal">
                     <div class="row1">
                         <div class="company">Meta</div>
-                        <div class="when">2025 — Now</div>
+                        <div class="when">Jun 2025 — Now</div>
                     </div>
-                    <div class="title">Software Engineer · VR AI Team · New York</div>
-                    <p class="desc">Designed and built agentic eval infrastructure powering hundreds of weekly runs across the org. Developed model-in-the-loop primitives that guide users through dynamic discovery flows for new games and movies. Shipped an internal tool driving an end-to-end data flywheel — 10,000+ annotations generated for model post-training.</p>
+                    <div class="title">Software Engineer · VR AI · Agentic Voice Assistant · New York</div>
+                    <p class="desc">Project lead for evaluation infrastructure on Meta's agentic voice assistant for VR device control. Architecting an AI-native distributed Rust service that hosts our agentic runtime and inference layer (-20% latency), building model-in-the-loop primitives for dynamic game and movie discovery, and authoring a Conveyor CI pipeline that takes builds from 2 hours to 30 minutes across 4 tiers and 9 regions. Earned a top-10% PSC rating in my first review cycle.</p>
                 </div>
                 <div class="glass role reveal">
                     <div class="row1">
                         <div class="company">Microsoft</div>
-                        <div class="when">2021 — 2025</div>
+                        <div class="when">Aug 2021 — May 2025</div>
                     </div>
                     <div class="title">Software Engineer · Meeting Services · Redmond</div>
-                    <p class="desc">Cut meeting-join latency 25% for XL Teams meetings and shipped the Microsoft Mesh integration that brought VR-capable meetings to 500k users. Designed Athena — a GPT-3.5 + Azure Cognitive Search chatbot for onboarding and on-call — recognized org-wide. Selected for the data-science residency to lead Smart Incident Management, cutting unwanted incident hops by 20%.</p>
+                    <p class="desc">Cut meeting-join latency 25% for XL Teams meetings via breakout-room perf work, and shipped the Microsoft Mesh × Teams integration bringing VR-capable meetings to 500k users. Created Athena — an org-recognized RAG chatbot for onboarding and on-call — and led Smart Incident Management as one of two engineers in the data-science residency (-20% unwanted incident hops). Designed the EU-compliant data store for ACS Rooms and mentored new hires on the team.</p>
                 </div>
                 <div class="glass role reveal">
                     <div class="row1">
                         <div class="company">CodePath</div>
-                        <div class="when">2024 — Now</div>
+                        <div class="when">Sep 2024 — Now</div>
                     </div>
                     <div class="title">Instructor</div>
                     <p class="desc">Lead biweekly technical interview prep sessions for 350+ underrepresented students in tech, focused on landing first internships and full-time SWE roles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="block">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="label">// 03 — Projects</div>
+                    <h2>Things I've built.</h2>
+                </div>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <p class="sub" style="margin: 0;">Highlighted work across agentic AI infra, data systems, and dev tooling.</p>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn" data-carousel-prev="projects-carousel" aria-label="Previous project">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <button class="carousel-btn" data-carousel-next="projects-carousel" aria-label="Next project">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="papers-wrap">
+                <div class="carousel" id="projects-carousel">
+
+                <div class="glass project reveal">
+                    <div class="tag-row">
+                        <span class="tag">AGENTIC · EVAL INFRA</span>
+                        <span class="at">@ META · 2025</span>
+                    </div>
+                    <h3>Agentic Eval Infrastructure</h3>
+                    <p class="summary">A custom eval platform with prompt, judge, and metric customization replacing a manual notebook workflow — now powering 1,400+ runs.</p>
+                    <ul class="bullets">
+                        <li><b>80% faster</b> and <b>100× more scalable</b> than the previous manual pipeline</li>
+                        <li>Caught <b>100+ P0 quality issues</b> the old system would have missed — yielding 38% fewer noisy tokens and +6pp tool-accuracy in app management</li>
+                        <li>Cut inference time <b>80%</b> on a 1,200-row eval (2h → 25min) via parallel batch inference</li>
+                    </ul>
+                    <div class="stack">
+                        <span>Hack</span><span>Python</span><span>TypeScript</span><span>Mastra</span>
+                    </div>
+                </div>
+
+                <div class="glass project reveal">
+                    <div class="tag-row">
+                        <span class="tag">AGENTIC · DATA</span>
+                        <span class="at">@ META · 2025</span>
+                    </div>
+                    <h3>Agentic Data Flywheel</h3>
+                    <p class="summary">End-to-end data system feeding model post-training — from synthesis to annotation to dataset versioning.</p>
+                    <ul class="bullets">
+                        <li>Synthetic-data pipeline replacing manual authoring; generated <b>380 complex, multi-step samples</b></li>
+                        <li>Dataset change-management system used to refresh training &amp; eval sets for the media-domain launch</li>
+                        <li>Analytics agent that audits data samples and human-graded eval results before annotation</li>
+                    </ul>
+                    <div class="stack">
+                        <span>Hack</span><span>Python</span><span>React</span>
+                    </div>
+                </div>
+
+                <div class="glass project reveal">
+                    <div class="tag-row">
+                        <span class="tag">RAG · CHATBOT</span>
+                        <span class="at">@ MICROSOFT · 2023</span>
+                    </div>
+                    <h3>Athena</h3>
+                    <p class="summary">RAG chat application improving onboarding and on-call experience by synthesizing answers from team documentation — recognized org-wide.</p>
+                    <ul class="bullets">
+                        <li>Onboarded <b>500+ documents</b> — webpages, OneNotes, design docs — with a document-ingestion pipeline for new teams</li>
+                        <li>Presented to VPs and mentored additional engineers to extend the system</li>
+                    </ul>
+                    <div class="stack">
+                        <span>Azure Cognitive Search</span><span>Azure OpenAI</span><span>React</span><span>Flask</span>
+                    </div>
+                </div>
+
+                <div class="glass project reveal">
+                    <div class="tag-row">
+                        <span class="tag">LLMS · RELIABILITY</span>
+                        <span class="at">@ MICROSOFT · 2023</span>
+                    </div>
+                    <h3>SmartIcM</h3>
+                    <p class="summary">LLM-driven incident-management system drawing insights from past customer incidents to route live ones better.</p>
+                    <ul class="bullets">
+                        <li>Drove the project from conceptualization to launch — <b>-20% unwanted incident hops</b> in our org</li>
+                        <li>One of two engineers selected for Microsoft's data-science residency program</li>
+                    </ul>
+                    <div class="stack">
+                        <span>LLMs</span><span>Azure ML</span><span>Logic Apps</span><span>Python</span>
+                    </div>
+                </div>
+
                 </div>
             </div>
         </div>
@@ -674,16 +926,16 @@
         <div class="container">
             <div class="section-head reveal">
                 <div>
-                    <div class="label">// 03 — Publications</div>
-                    <h2>Research &amp; papers.</h2>
+                    <div class="label">// 04 — Publications</div>
+                    <h2>Research Papers</h2>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
                     <p class="sub" style="margin: 0;">Selected publications. Full list on <a href="https://scholar.google.com/citations?user=KDWwL2gAAAAJ&hl=en" target="_blank" rel="noopener" style="color: var(--accent-2); text-decoration: none;">Google&nbsp;Scholar&nbsp;↗</a></p>
                     <div class="carousel-controls">
-                        <button class="carousel-btn" id="prev" aria-label="Previous paper">
+                        <button class="carousel-btn" data-carousel-prev="papers-carousel" aria-label="Previous paper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
                         </button>
-                        <button class="carousel-btn" id="next" aria-label="Next paper">
+                        <button class="carousel-btn" data-carousel-next="papers-carousel" aria-label="Next paper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                         </button>
                     </div>
@@ -691,7 +943,7 @@
             </div>
 
             <div class="papers-wrap">
-                <div class="carousel" id="carousel">
+                <div class="carousel" id="papers-carousel">
 
                     <article class="glass paper reveal">
                         <div class="venue-row">
@@ -750,30 +1002,76 @@
         </div>
     </section>
 
-    <section id="projects" class="block">
+    <section id="education" class="block">
         <div class="container">
             <div class="section-head reveal">
                 <div>
-                    <div class="label">// 04 — Projects</div>
-                    <h2>Things I've built.</h2>
+                    <div class="label">// 05 — Education</div>
+                    <h2>Where I studied.</h2>
                 </div>
-                <p class="sub">Internal and personal projects, from AI tooling to dev infra.</p>
+                <p class="sub">Specialized in machine learning at Georgia Tech; broad CS foundation at Penn.</p>
             </div>
-            <div class="projects-grid">
-                <div class="glass project reveal">
-                    <span class="tag">AI · CHATBOT</span>
-                    <h3>Athena</h3>
-                    <p>An internal Microsoft chatbot powered by Azure OpenAI and Cognitive Search that streamlines engineer onboarding and on-call workflows.</p>
+            <div class="edu-grid">
+                <div class="glass edu reveal">
+                    <div class="school">Georgia Institute of Technology</div>
+                    <div class="where">School of Computing · Atlanta, GA</div>
+                    <div class="degree">M.S. Computer Science · ML Specialization</div>
+                    <p class="extra">Graduate study focused on machine learning, building on the research output that became my recent NLP and CS-education publications.</p>
+                    <div class="meta-row">
+                        <div><span class="k">Graduated</span><span class="v">May 2025</span></div>
+                        <div><span class="k">GPA</span><span class="v">4.0 / 4.0</span></div>
+                    </div>
                 </div>
-                <div class="glass project reveal">
-                    <span class="tag">AI · DEV TOOLS</span>
-                    <h3>End-to-End Test Generator</h3>
-                    <p>An AI-powered console app that auto-generates end-to-end tests from a thin spec — cutting QA dev-time by an order of magnitude.</p>
+                <div class="glass edu reveal">
+                    <div class="school">University of Pennsylvania</div>
+                    <div class="where">School of Engineering and Applied Science · Philadelphia, PA</div>
+                    <div class="degree">B.S.E. Computer Science · Summa Cum Laude</div>
+                    <p class="extra">Minors in Engineering Entrepreneurship, Data Science, and Mathematics — undergraduate research output included the ACS Nano and Nano Research publications on materials science.</p>
+                    <div class="meta-row">
+                        <div><span class="k">Graduated</span><span class="v">May 2021</span></div>
+                        <div><span class="k">GPA</span><span class="v">3.9 / 4.0</span></div>
+                    </div>
                 </div>
-                <div class="glass project reveal">
-                    <span class="tag">RELIABILITY</span>
-                    <h3>Smart Incident Management</h3>
-                    <p>ML-driven on-call assistant that classifies, routes, and surfaces context for live incidents to shrink mean-time-to-resolution.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="block">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="label">// 06 — Skills</div>
+                    <h2>Tools of the trade.</h2>
+                </div>
+                <p class="sub">Languages and tools I reach for day-to-day, across AI infra, services, and frontend.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="glass skill-group reveal">
+                    <div class="group-title"><span class="bar"></span>Languages</div>
+                    <div class="skill-pills">
+                        <span>Python</span>
+                        <span>Hack / PHP</span>
+                        <span>TypeScript</span>
+                        <span>JavaScript</span>
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>Rust</span>
+                        <span>C#</span>
+                        <span>SQL</span>
+                        <span>Java</span>
+                    </div>
+                </div>
+                <div class="glass skill-group reveal">
+                    <div class="group-title"><span class="bar"></span>Tools &amp; Platforms</div>
+                    <div class="skill-pills">
+                        <span>Claude Code</span>
+                        <span>Cursor</span>
+                        <span>Codex</span>
+                        <span>Mastra</span>
+                        <span>Azure</span>
+                        <span>AWS</span>
+                        <span>Git</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -782,9 +1080,9 @@
     <section id="contact" class="block">
         <div class="container">
             <div class="glass contact-card reveal">
-                <div class="label" style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent-3); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px;">// 05 — Contact</div>
+                <div class="label" style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent-3); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px;">// 07 — Contact</div>
                 <h2>Let's build something.</h2>
-                <p>Open to research collaborations, teaching opportunities, and interesting engineering problems. The fastest way to reach me is email.</p>
+                <p>Open to research collaborations, teaching opportunities, and interesting engineering problems. The fastest way to reach me is via email.</p>
                 <div class="socials">
                     <a class="social" href="mailto:ayushnparikh@gmail.com">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -826,42 +1124,52 @@
         }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-        // Papers carousel
-        const carousel = document.getElementById('carousel');
-        const prevBtn = document.getElementById('prev');
-        const nextBtn = document.getElementById('next');
+        // Generic carousels (papers + projects)
+        function initCarousel(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return null;
+            const prevBtn = document.querySelector(`[data-carousel-prev="${carouselId}"]`);
+            const nextBtn = document.querySelector(`[data-carousel-next="${carouselId}"]`);
+            if (!prevBtn || !nextBtn) return null;
 
-        function scrollAmount() {
-            const card = carousel.querySelector('.paper');
-            if (!card) return 400;
-            const styles = getComputedStyle(carousel);
-            const gap = parseInt(styles.columnGap || styles.gap || '22', 10);
-            return card.offsetWidth + gap;
+            function scrollAmount() {
+                const card = carousel.querySelector('.paper, .project');
+                if (!card) return 400;
+                const styles = getComputedStyle(carousel);
+                const gap = parseInt(styles.columnGap || styles.gap || '22', 10);
+                return card.offsetWidth + gap;
+            }
+            function updateBtns() {
+                prevBtn.disabled = carousel.scrollLeft <= 4;
+                nextBtn.disabled = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 4;
+            }
+            prevBtn.addEventListener('click', () => carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+            nextBtn.addEventListener('click', () => carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+            carousel.addEventListener('scroll', updateBtns, { passive: true });
+            window.addEventListener('resize', updateBtns);
+            updateBtns();
+
+            return { carousel, prevBtn, nextBtn };
         }
 
-        function updateBtns() {
-            prevBtn.disabled = carousel.scrollLeft <= 4;
-            nextBtn.disabled = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 4;
-        }
+        const carousels = [
+            { sectionId: 'papers', ...initCarousel('papers-carousel') },
+            { sectionId: 'projects', ...initCarousel('projects-carousel') },
+        ].filter(c => c.carousel);
 
-        prevBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-        });
-        nextBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-        });
-        carousel.addEventListener('scroll', updateBtns, { passive: true });
-        window.addEventListener('resize', updateBtns);
-        updateBtns();
-
-        // Keyboard nav within papers section
+        // Keyboard nav: arrow keys drive whichever carousel is in view
         document.addEventListener('keydown', (e) => {
-            const papers = document.getElementById('papers');
-            const rect = papers.getBoundingClientRect();
-            const visible = rect.top < window.innerHeight * 0.7 && rect.bottom > window.innerHeight * 0.3;
-            if (!visible) return;
-            if (e.key === 'ArrowRight') { nextBtn.click(); }
-            if (e.key === 'ArrowLeft') { prevBtn.click(); }
+            if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+            for (const c of carousels) {
+                const section = document.getElementById(c.sectionId);
+                if (!section) continue;
+                const rect = section.getBoundingClientRect();
+                const visible = rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.4;
+                if (!visible) continue;
+                if (e.key === 'ArrowRight') c.nextBtn.click();
+                else c.prevBtn.click();
+                break;
+            }
         });
     </script>
 </body>
