@@ -308,6 +308,47 @@
             font-size: 1.1rem;
             flex-shrink: 0;
         }
+        .fact .ico.ico-logo {
+            background: #ffffff;
+            border: 1px solid var(--border-strong);
+            padding: 4px;
+            overflow: hidden;
+        }
+        .fact .ico.ico-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        .fact .ico.ico-duo {
+            background: transparent;
+            border: 0;
+            padding: 0;
+            width: auto;
+            min-width: 56px;
+            display: flex;
+            align-items: center;
+        }
+        .fact .ico.ico-duo .mini {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: #ffffff;
+            border: 1px solid var(--border-strong);
+            padding: 3px;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+        .fact .ico.ico-duo .mini + .mini {
+            margin-left: -10px;
+        }
+        .fact .ico.ico-duo .mini img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
         .fact .meta { font-size: 0.78rem; color: var(--text-faint); }
         .fact .val { font-weight: 600; font-size: 0.95rem; }
 
@@ -346,6 +387,65 @@
             color: var(--text-dim);
             font-size: 0.92rem;
             line-height: 1.6;
+        }
+
+        /* Brand row + logo blocks (shared by experience and education) */
+        .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            background: #ffffff;
+            border: 1px solid var(--border-strong);
+            flex-shrink: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+        }
+        .logo img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            display: block;
+        }
+        .logo--zoom img {
+            transform: scale(1.5);
+        }
+
+        /* Shared bullet list (used in role, edu, project) */
+        .bullets {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .bullets li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+        .bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+        }
+        .bullets li b {
+            color: var(--text);
+            font-weight: 600;
         }
 
         /* Papers Carousel */
@@ -494,35 +594,7 @@
             line-height: 1.6;
             margin-bottom: 16px;
         }
-        .project .bullets {
-            list-style: none;
-            margin: 0 0 18px;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .project .bullets li {
-            position: relative;
-            padding-left: 20px;
-            font-size: 0.88rem;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
-        .project .bullets li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 9px;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-        }
-        .project .bullets li b {
-            color: var(--text);
-            font-weight: 600;
-        }
+        .project .bullets { margin-bottom: 18px; }
         .project .stack {
             display: flex;
             flex-wrap: wrap;
@@ -886,14 +958,17 @@
                 </div>
                 <div class="quick-facts">
                     <div class="glass fact reveal">
-                        <div class="ico">🏢</div>
+                        <div class="ico ico-logo"><img src="files/meta-logo.png" alt="Meta"></div>
                         <div>
                             <div class="meta">Currently</div>
                             <div class="val">SWE @ Meta · VR AI · NY</div>
                         </div>
                     </div>
                     <div class="glass fact reveal">
-                        <div class="ico">🎓</div>
+                        <div class="ico ico-duo">
+                            <div class="mini"><img src="files/gatech-logo.png" alt="Georgia Tech"></div>
+                            <div class="mini"><img src="files/upenn-logo.png" alt="UPenn"></div>
+                        </div>
                         <div>
                             <div class="meta">Education</div>
                             <div class="val">Georgia Tech · UPenn</div>
@@ -923,27 +998,53 @@
             <div class="timeline">
                 <div class="glass role reveal">
                     <div class="row1">
-                        <div class="company">Meta</div>
+                        <div class="brand-row">
+                            <div class="logo"><img src="files/meta-logo.png" alt="Meta logo"></div>
+                            <div class="company">Meta</div>
+                        </div>
                         <div class="when">Jun 2025 — Now</div>
                     </div>
-                    <div class="title">Software Engineer · VR AI · Agentic Voice Assistant · New York</div>
-                    <p class="desc">Project lead for evaluation infrastructure on Meta's agentic voice assistant for VR device control. Architecting an AI-native distributed Rust service that hosts our agentic runtime and inference layer (-20% latency), building model-in-the-loop primitives for dynamic game and movie discovery, and authoring a Conveyor CI pipeline that takes builds from 2 hours to 30 minutes across 4 tiers and 9 regions. Earned a top-10% PSC rating in my first review cycle.</p>
+                    <div class="title">SWE · VR AI · Agentic Voice Assistant · NY</div>
+                    <ul class="bullets">
+                        <li>Project lead for <b>eval infrastructure</b> on Meta's agentic voice assistant for VR device control</li>
+                        <li>Architecting an AI-native distributed <b>Rust</b> service hosting the agentic runtime + inference layer — <b>-20% latency</b></li>
+                        <li>Built model-in-the-loop primitives for dynamic game and movie discovery flows</li>
+                        <li>Authored a Conveyor CI pipeline: <b>2h → 30min</b> across 4 tiers and 9 regions</li>
+                        <li><b>Top-10% PSC rating</b> in my first review cycle</li>
+                    </ul>
                 </div>
                 <div class="glass role reveal">
                     <div class="row1">
-                        <div class="company">Microsoft</div>
+                        <div class="brand-row">
+                            <div class="logo logo--zoom"><img src="files/microsoft-logo.png" alt="Microsoft logo"></div>
+                            <div class="company">Microsoft</div>
+                        </div>
                         <div class="when">Aug 2021 — May 2025</div>
                     </div>
-                    <div class="title">Software Engineer · Meeting Services · Redmond</div>
-                    <p class="desc">Cut meeting-join latency 25% for XL Teams meetings via breakout-room perf work, and shipped the Microsoft Mesh × Teams integration bringing VR-capable meetings to 500k users. Created Athena — an org-recognized RAG chatbot for onboarding and on-call — and led Smart Incident Management as one of two engineers in the data-science residency (-20% unwanted incident hops). Designed the EU-compliant data store for ACS Rooms and mentored new hires on the team.</p>
+                    <div class="title">SWE · Meeting Services · Redmond</div>
+                    <ul class="bullets">
+                        <li>Cut meeting-join latency <b>25%</b> for XL Teams meetings via breakout-room perf</li>
+                        <li>Shipped <b>Microsoft Mesh × Teams</b> integration — VR-capable meetings for <b>500k users</b></li>
+                        <li>Created <b>Athena</b>, an org-recognized RAG chatbot for onboarding and on-call</li>
+                        <li>Led <b>Smart Incident Management</b> as 1 of 2 engineers in the data-science residency (<b>-20%</b> incident hops)</li>
+                        <li>Designed EU-compliant data store for ACS Rooms; mentored new hires</li>
+                    </ul>
                 </div>
                 <div class="glass role reveal">
                     <div class="row1">
-                        <div class="company">CodePath</div>
+                        <div class="brand-row">
+                            <div class="logo"><img src="files/codepath-logo.jpg" alt="CodePath logo"></div>
+                            <div class="company">CodePath</div>
+                        </div>
                         <div class="when">Sep 2024 — Now</div>
                     </div>
                     <div class="title">Instructor · AI 110 — AI Native Programming</div>
-                    <p class="desc">Lead weekly live sessions for 350+ underrepresented students in tech. Co-shaped the AI 110 curriculum on AI-native programming and run technical-interview prep aimed at landing first internships and full-time SWE roles. <a href="#teaching" style="color: var(--accent-2); text-decoration: none; font-weight: 500;">See a lecture ↓</a></p>
+                    <ul class="bullets">
+                        <li>Lead <b>weekly live sessions</b> for 350+ underrepresented students in tech</li>
+                        <li>Co-shaped the <b>AI 110</b> curriculum on AI-native programming</li>
+                        <li>Run technical-interview prep aimed at first internships and full-time SWE roles</li>
+                        <li><a href="#teaching" style="color: var(--accent-2); text-decoration: none; font-weight: 500;">See a lecture ↓</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1174,20 +1275,32 @@
             </div>
             <div class="edu-grid">
                 <div class="glass edu reveal">
-                    <div class="school">Georgia Institute of Technology</div>
+                    <div class="brand-row" style="margin-bottom: 8px;">
+                        <div class="logo"><img src="files/gatech-logo.png" alt="Georgia Tech logo"></div>
+                        <div class="school">Georgia Institute of Technology</div>
+                    </div>
                     <div class="where">School of Computing · Atlanta, GA</div>
                     <div class="degree">M.S. Computer Science · ML Specialization</div>
-                    <p class="extra">Graduate study focused on machine learning, building on the research output that became my recent NLP and CS-education publications.</p>
+                    <ul class="bullets">
+                        <li>Graduate study focused on <b>machine learning</b></li>
+                        <li>Foundation for recent <b>NLP</b> and <b>CS-education</b> publications</li>
+                    </ul>
                     <div class="meta-row">
                         <div><span class="k">Graduated</span><span class="v">May 2025</span></div>
                         <div><span class="k">GPA</span><span class="v">4.0 / 4.0</span></div>
                     </div>
                 </div>
                 <div class="glass edu reveal">
-                    <div class="school">University of Pennsylvania</div>
+                    <div class="brand-row" style="margin-bottom: 8px;">
+                        <div class="logo"><img src="files/upenn-logo.png" alt="UPenn logo"></div>
+                        <div class="school">University of Pennsylvania</div>
+                    </div>
                     <div class="where">School of Engineering and Applied Science · Philadelphia, PA</div>
                     <div class="degree">B.S.E. Computer Science · Summa Cum Laude</div>
-                    <p class="extra">Minors in Engineering Entrepreneurship, Data Science, and Mathematics — undergraduate research output included the ACS Nano and Nano Research publications on materials science.</p>
+                    <ul class="bullets">
+                        <li>Triple minor: <b>Engineering Entrepreneurship</b>, <b>Data Science</b>, and <b>Mathematics</b></li>
+                        <li>Undergraduate research → <b>ACS Nano</b> and <b>Nano Research</b> publications on materials science</li>
+                    </ul>
                     <div class="meta-row">
                         <div><span class="k">Graduated</span><span class="v">May 2021</span></div>
                         <div><span class="k">GPA</span><span class="v">3.9 / 4.0</span></div>
